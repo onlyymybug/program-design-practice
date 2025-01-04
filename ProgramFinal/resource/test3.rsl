@@ -1,0 +1,88 @@
+#起始步骤
+Step Welcome
+Speak $name + "您好，请问有什么可以帮助您？"
+Listen 15
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#处理查积分的步骤
+Step searchProc
+Speak "您账户的积分余额为" + $point + ",请问您还有什么需要吗？"
+Listen 15
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#买水果后的步骤
+Step fruitProc
+Speak "请问您需要什么水果？"
+Listen 10
+Branch "香蕉" sendProc
+Branch "西瓜" sendProc
+Branch "橘子" sendProc
+Branch "苹果" sendProc
+Branch "榴莲" sendProc
+Branch "草莓" sendProc
+Silence fruitProc
+Default lackProc
+#缺少种类的步骤
+Step lackProc
+Speak "暂时没有该种水果，还需要其他水果吗？"
+Listen 15
+Branch "需要" fruitProc
+Branch "不需要" reask
+Default defaultProc
+#再次询问的步骤
+Step reask
+Speak "请问您还有什么需要吗？"
+Listen 15
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#结束退出的步骤
+Step thanks
+Speak "感谢您的来电，再见"
+Exit
+#处理买水果后的步骤
+Step sendProc
+Speak "已生成收货人为" + $name + "收货地址为" + $address + "的订单，请耐心等待配送。请问还有什么需要吗？"
+Listen 10
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+Default defaultProc
+#查积分的步骤
+Step searchProc
+Speak "您的账户积分为" + $point + "分。请问您还有什么需要吗？"
+Listen 10
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+Default defaultProc
+#如果用户不说话的处理步骤
+Step silenceProc
+Speak "听不清，请你大声一点可以吗？"
+Listen 15
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#如果没有匹配的步骤
+Step defaultProc
+Speak "不太懂，请问您还有什么需求吗？"
+Listen 15
+Branch "买水果" fruitProc
+Branch "查积分" searchProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc

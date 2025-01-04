@@ -1,0 +1,4 @@
+name chinese math
+2021211111 liu 75 65
+2021211112 zhang 85 75
+2021211113 wang 65 85

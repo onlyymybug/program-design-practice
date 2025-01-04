@@ -1,0 +1,48 @@
+#起始步骤
+Step Welcome
+Speak $name + "先生/女士，您好，请问有什么可以帮助您？"
+Listen 10
+Branch "查流量" flowProc
+Branch "查话费" billProc
+Silence silenceProc
+Default defaultProc
+#查话费的步骤
+Step billProc
+Speak "您的话费余额为" + $bill + "元，请问您还需要什么服务？"
+Listen 10
+Branch "查流量" flowProc
+Branch "查话费" billProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#结束退出的步骤
+Step thanks
+Speak "感谢您的来电，再见"
+Exit
+#处理查流量的步骤
+Step flowProc
+Speak "您的流量余额" + $flow + "GB，请问您还需要什么服务？"
+Listen 10
+Branch "查流量" flowProc
+Branch "查话费" billProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#如果用户不说话的处理步骤
+Step silenceProc
+Speak "听不清，请您复述您的要求。"
+Listen 10
+Branch "查流量" flowProc
+Branch "查话费" billProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#如果没有匹配的步骤
+Step defaultProc
+Speak "抱歉，暂时没有理解您的要求，能再说一遍吗？"
+Listen 10
+Branch "查流量" flowProc
+Branch "查话费" billProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc

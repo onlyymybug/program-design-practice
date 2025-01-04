@@ -1,0 +1,53 @@
+#起始步骤
+Step Welcome
+Speak $name + "您好，请问有什么可以帮助您？"
+Listen 15
+Branch "查成绩" scoreProc
+Branch "提建议" adviceProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#处理提建议的步骤
+Step adviceProc
+Speak "请问您有什么想与我们交流的吗？请提出你宝贵的建议。"
+Listen 15
+Silence silenceProc
+Default thankAdvice
+#提出建议后的步骤
+Step thankAdvice
+Speak "感谢您的建议，您还有什么需求？"
+Listen 10
+Branch "查成绩" scoreProc
+Branch "提建议" adviceProc
+Branch "再见" thanks
+Default defaultProc
+#结束退出的步骤
+Step thanks
+Speak "感谢您的来电，再见"
+Exit
+#处理查成绩的步骤
+Step scoreProc
+Speak $name + "的语文成绩为" + $chinese + "分，数学成绩为" + $math + "分。祝你能收获一个满意的成绩。"
+Listen 10
+Branch "提建议" adviceProc
+Branch "查成绩" scoreProc
+Branch "再见" thanks
+Default defaultProc
+#如果用户不说话的处理步骤
+Step silenceProc
+Speak "听不清，请你大声一点可以吗？"
+Listen 15
+Branch "查成绩" scoreProc
+Branch "提建议" adviceProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
+#如果没有匹配的步骤
+Step defaultProc
+Speak "抱歉，暂时没有理解您的要求，能再说一遍吗？"
+Listen 15
+Branch "查成绩" scoreProc
+Branch "提建议" adviceProc
+Branch "再见" thanks
+Silence silenceProc
+Default defaultProc
